@@ -5,7 +5,17 @@
 clock cT; // current time
 clock gT; // global time
 const int t = 30; // temps pour sortir d'une salle standard
-const int tempsLimite = 1000; // temps impartis pour sortir du musée</declaration>
+const int tempsLimite = 300; // temps impartis pour sortir du musée
+
+// Placement des gardiens
+const int pos1 = 3;
+const int pos2 = 5;
+
+// Salle accessible
+
+bool salle3Accessible;
+bool salle4Accessible;
+bool salle5Accessible;</declaration>
 	<template>
 		<name x="5" y="5">Labyrinth</name>
 		<declaration>// Place local declarations here.</declaration>
@@ -13,31 +23,31 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 			<name x="76" y="229">Sortie</name>
 		</location>
 		<location id="id1" x="-204" y="212">
-			<name x="-214" y="178">Salle 9</name>
+			<name x="-214" y="178">Salle9</name>
 		</location>
 		<location id="id2" x="-467" y="212">
-			<name x="-477" y="178">Salle 8</name>
+			<name x="-477" y="178">Salle8</name>
 		</location>
 		<location id="id3" x="-705" y="212">
-			<name x="-715" y="178">Salle 7</name>
+			<name x="-714" y="178">Salle7</name>
 		</location>
 		<location id="id4" x="-204" y="-25">
-			<name x="-214" y="-59">Salle 6</name>
+			<name x="-214" y="-59">Salle6</name>
 		</location>
 		<location id="id5" x="-467" y="-25">
-			<name x="-477" y="-59">Salle 5</name>
+			<name x="-476" y="-59">Salle5</name>
 		</location>
 		<location id="id6" x="-705" y="-25">
-			<name x="-715" y="-59">Salle 4</name>
+			<name x="-715" y="-59">Salle4</name>
 		</location>
 		<location id="id7" x="-204" y="-263">
 			<name x="-214" y="-297">Salle3</name>
 		</location>
 		<location id="id8" x="-459" y="-263">
-			<name x="-469" y="-297">Salle 2</name>
+			<name x="-469" y="-297">Salle2</name>
 		</location>
 		<location id="id9" x="-705" y="-263">
-			<name x="-715" y="-297">Salle 1</name>
+			<name x="-714" y="-297">Salle1</name>
 		</location>
 		<init ref="id9"/>
 		<transition>
@@ -83,7 +93,7 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id2"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-510" y="59">cT &gt;= t</label>
+			<label kind="guard" x="-561" y="68">cT &gt;= t &amp;&amp; salle5Accessible</label>
 			<label kind="assignment" x="-484" y="85">cT = 0</label>
 		</transition>
 		<transition>
@@ -108,13 +118,13 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-374" y="-17">cT &lt;= t</label>
+			<label kind="guard" x="-425" y="-17">cT &gt;= t &amp;&amp; salle5Accessible</label>
 			<label kind="assignment" x="-289" y="-17">cT = 0</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-450" y="-153">cT &gt;= t</label>
+			<label kind="guard" x="-493" y="-136">cT &gt;= t &amp;&amp; salle5Accessible</label>
 			<label kind="assignment" x="-391" y="-153">cT = 0</label>
 			<nail x="-416" y="-144"/>
 		</transition>
@@ -127,20 +137,20 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-654" y="-42">cT &gt;= t</label>
+			<label kind="guard" x="-654" y="-42">cT &gt;= t &amp;&amp; salle4Accessible</label>
 			<label kind="assignment" x="-586" y="-42">cT = 0</label>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-629" y="-85">cT &gt;= t</label>
+			<label kind="guard" x="-671" y="-76">cT &gt;= t &amp;&amp; salle5Accessible</label>
 			<label kind="assignment" x="-569" y="-85">cT = 0</label>
 			<nail x="-586" y="-76"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-765" y="59">cT &gt;= t</label>
+			<label kind="guard" x="-765" y="59">cT &gt;= t &amp;&amp; salle4Accessible</label>
 			<label kind="assignment" x="-748" y="76">cT = 0</label>
 		</transition>
 		<transition>
@@ -153,7 +163,7 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id9"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-705" y="-195">cT &gt;= t</label>
+			<label kind="guard" x="-705" y="-195">cT &gt;= t &amp;&amp; salle4Accessible</label>
 			<label kind="assignment" x="-680" y="-178">cT = 0</label>
 			<nail x="-654" y="-136"/>
 		</transition>
@@ -173,8 +183,8 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id4"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-263" y="-153">cT &gt;= t</label>
-			<label kind="assignment" x="-229" y="-136">cT = 0</label>
+			<label kind="guard" x="-280" y="-161">cT &gt;= t &amp;&amp; salle3Accessible</label>
+			<label kind="assignment" x="-246" y="-144">cT = 0</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -185,7 +195,7 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 		<transition>
 			<source ref="id8"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-399" y="-238">cT &lt;= t</label>
+			<label kind="guard" x="-408" y="-221">cT &lt;= t &amp;&amp; salle3Accessible</label>
 			<label kind="assignment" x="-331" y="-238">cT = 0</label>
 			<nail x="-340" y="-221"/>
 		</transition>
@@ -203,11 +213,52 @@ const int tempsLimite = 1000; // temps impartis pour sortir du musée</declarati
 			<nail x="-569" y="-221"/>
 		</transition>
 	</template>
-	<system>// Place template instantiations here.
-Process = Template();
-// List one or more processes to be composed into a system.
-system Process;
+	<template>
+		<name>Guard</name>
+		<parameter>int pos</parameter>
+		<location id="id10" x="-527" y="-59">
+			<name x="-552" y="-42">positionSalle4</name>
+		</location>
+		<location id="id11" x="-535" y="-153">
+			<name x="-545" y="-187">positionSalle5</name>
+		</location>
+		<location id="id12" x="-535" y="-280">
+			<name x="-578" y="-255">positionSalle3</name>
+		</location>
+		<location id="id13" x="-722" y="-119">
+			<urgent/>
+		</location>
+		<init ref="id13"/>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-671" y="-85">pos == 4</label>
+			<label kind="assignment" x="-739" y="-68">salle4Accessible = false</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id11"/>
+			<label kind="guard" x="-646" y="-144">pos == 5</label>
+			<label kind="assignment" x="-680" y="-127">salle5Accessible = false</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-654" y="-238">pos == 3</label>
+			<label kind="assignment" x="-739" y="-212">salle3Accessible = false</label>
+		</transition>
+	</template>
+	<system>Guard1 = Guard(3);
+Guard2 = Guard(5);
+Guard3 = Guard(4);
+system Labyrinth, Guard1, Guard2, Guard3;
     </system>
 	<queries>
+		<query>
+			<formula>E&lt;&gt; Labyrinth.Sortie &amp;&amp; gT &lt;= tempsLimite
+			</formula>
+			<comment>
+			</comment>
+		</query>
 	</queries>
 </nta>
