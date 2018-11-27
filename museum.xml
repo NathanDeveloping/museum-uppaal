@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock cT; // current time
+clock gT; // global time
+const int t = 30; // temps pour sortir d'une salle standard
+const int tempsLimite = 1000; // temps impartis pour sortir du musée</declaration>
+	<template>
+		<name x="5" y="5">Labyrinth</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="93" y="212">
+			<name x="76" y="229">Sortie</name>
+		</location>
+		<location id="id1" x="-204" y="212">
+			<name x="-214" y="178">Salle 9</name>
+		</location>
+		<location id="id2" x="-467" y="212">
+			<name x="-477" y="178">Salle 8</name>
+		</location>
+		<location id="id3" x="-705" y="212">
+			<name x="-715" y="178">Salle 7</name>
+		</location>
+		<location id="id4" x="-204" y="-25">
+			<name x="-214" y="-59">Salle 6</name>
+		</location>
+		<location id="id5" x="-467" y="-25">
+			<name x="-477" y="-59">Salle 5</name>
+		</location>
+		<location id="id6" x="-705" y="-25">
+			<name x="-715" y="-59">Salle 4</name>
+		</location>
+		<location id="id7" x="-204" y="-263">
+			<name x="-214" y="-297">Salle3</name>
+		</location>
+		<location id="id8" x="-459" y="-263">
+			<name x="-469" y="-297">Salle 2</name>
+		</location>
+		<location id="id9" x="-705" y="-263">
+			<name x="-715" y="-297">Salle 1</name>
+		</location>
+		<init ref="id9"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-110" y="187">cT &gt;= t</label>
+			<label kind="assignment" x="-42" y="195">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-425" y="153">cT &gt;= t</label>
+			<label kind="assignment" x="-340" y="144">cT = 0</label>
+			<nail x="-340" y="144"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-544" y="144">cT &gt;= t</label>
+			<label kind="assignment" x="-620" y="144">cT = 0</label>
+			<nail x="-578" y="153"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-174" y="-4">cT &gt;= t</label>
+			<label kind="assignment" x="-174" y="30">cT = 0</label>
+			<nail x="-144" y="85"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-442" y="51">cT &gt;= t</label>
+			<label kind="assignment" x="-416" y="76">cT = 0</label>
+			<nail x="-408" y="76"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-246" y="59">cT &gt;= t</label>
+			<label kind="assignment" x="-221" y="76">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-510" y="59">cT &gt;= t</label>
+			<label kind="assignment" x="-484" y="85">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-399" y="187">cT &gt;= t</label>
+			<label kind="assignment" x="-348" y="204">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-646" y="195">cT &gt;= t</label>
+			<label kind="assignment" x="-586" y="204">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-399" y="-76">cT &gt;= t</label>
+			<label kind="assignment" x="-340" y="-76">cT = 0</label>
+			<nail x="-340" y="-76"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-374" y="-17">cT &lt;= t</label>
+			<label kind="assignment" x="-289" y="-17">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-450" y="-153">cT &gt;= t</label>
+			<label kind="assignment" x="-391" y="-153">cT = 0</label>
+			<nail x="-416" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-501" y="-195">cT &gt;= t</label>
+			<label kind="assignment" x="-493" y="-178">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-654" y="-42">cT &gt;= t</label>
+			<label kind="assignment" x="-586" y="-42">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-629" y="-85">cT &gt;= t</label>
+			<label kind="assignment" x="-569" y="-85">cT = 0</label>
+			<nail x="-586" y="-76"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-765" y="59">cT &gt;= t</label>
+			<label kind="assignment" x="-748" y="76">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-680" y="51">cT &gt;= t</label>
+			<label kind="assignment" x="-654" y="76">cT = 0</label>
+			<nail x="-646" y="76"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-705" y="-195">cT &gt;= t</label>
+			<label kind="assignment" x="-680" y="-178">cT = 0</label>
+			<nail x="-654" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-756" y="-144">cT &gt;= t</label>
+			<label kind="assignment" x="-714" y="-119">cT= 0</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-178" y="-170">cT &gt;= t</label>
+			<label kind="assignment" x="-119" y="-170">cT = 0</label>
+			<nail x="-153" y="-153"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id7"/>
+			<label kind="guard" x="-263" y="-153">cT &gt;= t</label>
+			<label kind="assignment" x="-229" y="-136">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-391" y="-280">cT &gt;= t</label>
+			<label kind="assignment" x="-323" y="-280">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id7"/>
+			<label kind="guard" x="-399" y="-238">cT &lt;= t</label>
+			<label kind="assignment" x="-331" y="-238">cT = 0</label>
+			<nail x="-340" y="-221"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-646" y="-289">cT &gt;= t</label>
+			<label kind="assignment" x="-569" y="-289">cT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-612" y="-229">cT &gt;= t</label>
+			<label kind="assignment" x="-544" y="-229">cT = 0</label>
+			<nail x="-569" y="-221"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Template();
+// List one or more processes to be composed into a system.
+system Process;
+    </system>
+	<queries>
+	</queries>
+</nta>
