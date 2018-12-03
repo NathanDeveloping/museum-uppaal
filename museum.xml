@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
-<nta>
-	<declaration>// Place global declarations here.
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
 clock cT; // current time
 clock gT; // global time
 const int t = 30; // temps pour sortir d'une salle standard
@@ -12,253 +9,32 @@ const int pos1 = 3;
 const int pos2 = 5;
 
 // Salle accessible
-
+bool salle1Accessible;
+bool salle2Accessible;
 bool salle3Accessible;
 bool salle4Accessible;
-bool salle5Accessible;</declaration>
-	<template>
-		<name x="5" y="5">Labyrinth</name>
-		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="93" y="212">
-			<name x="76" y="229">Sortie</name>
-		</location>
-		<location id="id1" x="-204" y="212">
-			<name x="-214" y="178">Salle9</name>
-		</location>
-		<location id="id2" x="-467" y="212">
-			<name x="-477" y="178">Salle8</name>
-		</location>
-		<location id="id3" x="-705" y="212">
-			<name x="-714" y="178">Salle7</name>
-		</location>
-		<location id="id4" x="-204" y="-25">
-			<name x="-214" y="-59">Salle6</name>
-		</location>
-		<location id="id5" x="-467" y="-25">
-			<name x="-476" y="-59">Salle5</name>
-		</location>
-		<location id="id6" x="-705" y="-25">
-			<name x="-715" y="-59">Salle4</name>
-		</location>
-		<location id="id7" x="-204" y="-263">
-			<name x="-214" y="-297">Salle3</name>
-		</location>
-		<location id="id8" x="-459" y="-263">
-			<name x="-469" y="-297">Salle2</name>
-		</location>
-		<location id="id9" x="-705" y="-263">
-			<name x="-714" y="-297">Salle1</name>
-		</location>
-		<init ref="id9"/>
-		<transition>
-			<source ref="id1"/>
-			<target ref="id0"/>
-			<label kind="guard" x="-110" y="187">cT &gt;= t</label>
-			<label kind="assignment" x="-42" y="195">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id1"/>
-			<label kind="guard" x="-425" y="153">cT &gt;= t</label>
-			<label kind="assignment" x="-340" y="144">cT = 0</label>
-			<nail x="-340" y="144"/>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id2"/>
-			<label kind="guard" x="-544" y="144">cT &gt;= t</label>
-			<label kind="assignment" x="-620" y="144">cT = 0</label>
-			<nail x="-578" y="153"/>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id1"/>
-			<label kind="guard" x="-174" y="-4">cT &gt;= t</label>
-			<label kind="assignment" x="-174" y="30">cT = 0</label>
-			<nail x="-144" y="85"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id2"/>
-			<label kind="guard" x="-442" y="51">cT &gt;= t</label>
-			<label kind="assignment" x="-416" y="76">cT = 0</label>
-			<nail x="-408" y="76"/>
-		</transition>
-		<transition>
-			<source ref="id1"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-246" y="59">cT &gt;= t</label>
-			<label kind="assignment" x="-221" y="76">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-561" y="68">cT &gt;= t &amp;&amp; salle5Accessible</label>
-			<label kind="assignment" x="-484" y="85">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id1"/>
-			<target ref="id2"/>
-			<label kind="guard" x="-399" y="187">cT &gt;= t</label>
-			<label kind="assignment" x="-348" y="204">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id3"/>
-			<label kind="guard" x="-646" y="195">cT &gt;= t</label>
-			<label kind="assignment" x="-586" y="204">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-399" y="-76">cT &gt;= t</label>
-			<label kind="assignment" x="-340" y="-76">cT = 0</label>
-			<nail x="-340" y="-76"/>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-425" y="-17">cT &gt;= t &amp;&amp; salle5Accessible</label>
-			<label kind="assignment" x="-289" y="-17">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-493" y="-136">cT &gt;= t &amp;&amp; salle5Accessible</label>
-			<label kind="assignment" x="-391" y="-153">cT = 0</label>
-			<nail x="-416" y="-144"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id8"/>
-			<label kind="guard" x="-501" y="-195">cT &gt;= t</label>
-			<label kind="assignment" x="-493" y="-178">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id6"/>
-			<label kind="guard" x="-654" y="-42">cT &gt;= t &amp;&amp; salle4Accessible</label>
-			<label kind="assignment" x="-586" y="-42">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-671" y="-76">cT &gt;= t &amp;&amp; salle5Accessible</label>
-			<label kind="assignment" x="-569" y="-85">cT = 0</label>
-			<nail x="-586" y="-76"/>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id6"/>
-			<label kind="guard" x="-765" y="59">cT &gt;= t &amp;&amp; salle4Accessible</label>
-			<label kind="assignment" x="-748" y="76">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id3"/>
-			<label kind="guard" x="-680" y="51">cT &gt;= t</label>
-			<label kind="assignment" x="-654" y="76">cT = 0</label>
-			<nail x="-646" y="76"/>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id6"/>
-			<label kind="guard" x="-705" y="-195">cT &gt;= t &amp;&amp; salle4Accessible</label>
-			<label kind="assignment" x="-680" y="-178">cT = 0</label>
-			<nail x="-654" y="-136"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id9"/>
-			<label kind="guard" x="-756" y="-144">cT &gt;= t</label>
-			<label kind="assignment" x="-714" y="-119">cT= 0</label>
-		</transition>
-		<transition>
-			<source ref="id7"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-178" y="-170">cT &gt;= t</label>
-			<label kind="assignment" x="-119" y="-170">cT = 0</label>
-			<nail x="-153" y="-153"/>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id7"/>
-			<label kind="guard" x="-280" y="-161">cT &gt;= t &amp;&amp; salle3Accessible</label>
-			<label kind="assignment" x="-246" y="-144">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id7"/>
-			<target ref="id8"/>
-			<label kind="guard" x="-391" y="-280">cT &gt;= t</label>
-			<label kind="assignment" x="-323" y="-280">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id7"/>
-			<label kind="guard" x="-408" y="-221">cT &lt;= t &amp;&amp; salle3Accessible</label>
-			<label kind="assignment" x="-331" y="-238">cT = 0</label>
-			<nail x="-340" y="-221"/>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id9"/>
-			<label kind="guard" x="-646" y="-289">cT &gt;= t</label>
-			<label kind="assignment" x="-569" y="-289">cT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id8"/>
-			<label kind="guard" x="-612" y="-229">cT &gt;= t</label>
-			<label kind="assignment" x="-544" y="-229">cT = 0</label>
-			<nail x="-569" y="-221"/>
-		</transition>
-	</template>
-	<template>
-		<name>Guard</name>
-		<parameter>int pos</parameter>
-		<location id="id10" x="-527" y="-59">
-			<name x="-552" y="-42">positionSalle4</name>
-		</location>
-		<location id="id11" x="-535" y="-153">
-			<name x="-545" y="-187">positionSalle5</name>
-		</location>
-		<location id="id12" x="-535" y="-280">
-			<name x="-578" y="-255">positionSalle3</name>
-		</location>
-		<location id="id13" x="-722" y="-119">
-			<urgent/>
-		</location>
-		<init ref="id13"/>
-		<transition>
-			<source ref="id13"/>
-			<target ref="id10"/>
-			<label kind="guard" x="-671" y="-85">pos == 4</label>
-			<label kind="assignment" x="-739" y="-68">salle4Accessible = false</label>
-		</transition>
-		<transition>
-			<source ref="id13"/>
-			<target ref="id11"/>
-			<label kind="guard" x="-646" y="-144">pos == 5</label>
-			<label kind="assignment" x="-680" y="-127">salle5Accessible = false</label>
-		</transition>
-		<transition>
-			<source ref="id13"/>
-			<target ref="id12"/>
-			<label kind="guard" x="-654" y="-238">pos == 3</label>
-			<label kind="assignment" x="-739" y="-212">salle3Accessible = false</label>
-		</transition>
-	</template>
-	<system>Guard1 = Guard(3);
-Guard2 = Guard(5);
-Guard3 = Guard(4);
-system Labyrinth, Guard1, Guard2, Guard3;
-    </system>
-	<queries>
-		<query>
-			<formula>E&lt;&gt; Labyrinth.Sortie &amp;&amp; gT &lt;= tempsLimite
-			</formula>
-			<comment>
-			</comment>
-		</query>
-	</queries>
-</nta>
+bool salle5Accessible;
+bool salle6Accessible;
+bool salle7Accessible;
+bool salle8Accessible;
+bool salle9Accessible;</declaration><template><name x="5" y="5">Labyrinth</name><declaration>// Place local declarations here.</declaration><location id="id0" x="93" y="212"><name x="76" y="229">Sortie</name></location><location id="id1" x="-204" y="212"><name x="-214" y="178">Salle9</name></location><location id="id2" x="-467" y="212"><name x="-477" y="178">Salle8</name></location><location id="id3" x="-705" y="212"><name x="-714" y="178">Salle7</name></location><location id="id4" x="-204" y="-25"><name x="-214" y="-59">Salle6</name></location><location id="id5" x="-467" y="-25"><name x="-476" y="-59">Salle5</name></location><location id="id6" x="-705" y="-25"><name x="-715" y="-59">Salle4</name></location><location id="id7" x="-204" y="-263"><name x="-214" y="-297">Salle3</name></location><location id="id8" x="-459" y="-263"><name x="-469" y="-297">Salle2</name></location><location id="id9" x="-705" y="-263"><name x="-714" y="-297">Salle1</name></location><init ref="id9"/><transition><source ref="id1"/><target ref="id0"/><label kind="guard" x="-110" y="187">cT &gt;= t</label><label kind="assignment" x="-42" y="195">cT = 0</label></transition><transition><source ref="id2"/><target ref="id1"/><label kind="guard" x="-425" y="153">cT &gt;= t</label><label kind="assignment" x="-340" y="144">cT = 0</label><nail x="-340" y="144"/></transition><transition><source ref="id3"/><target ref="id2"/><label kind="guard" x="-544" y="144">cT &gt;= t</label><label kind="assignment" x="-620" y="144">cT = 0</label><nail x="-578" y="153"/></transition><transition><source ref="id4"/><target ref="id1"/><label kind="guard" x="-174" y="-4">cT &gt;= t</label><label kind="assignment" x="-174" y="30">cT = 0</label><nail x="-144" y="85"/></transition><transition><source ref="id5"/><target ref="id2"/><label kind="guard" x="-442" y="51">cT &gt;= t</label><label kind="assignment" x="-416" y="76">cT = 0</label><nail x="-408" y="76"/></transition><transition><source ref="id1"/><target ref="id4"/><label kind="guard" x="-246" y="59">cT &gt;= t</label><label kind="assignment" x="-221" y="76">cT = 0</label></transition><transition><source ref="id2"/><target ref="id5"/><label kind="guard" x="-561" y="68">cT &gt;= t &amp;&amp; salle5Accessible</label><label kind="assignment" x="-484" y="85">cT = 0</label></transition><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="-399" y="187">cT &gt;= t</label><label kind="assignment" x="-348" y="204">cT = 0</label></transition><transition><source ref="id2"/><target ref="id3"/><label kind="guard" x="-646" y="195">cT &gt;= t</label><label kind="assignment" x="-586" y="204">cT = 0</label></transition><transition><source ref="id5"/><target ref="id4"/><label kind="guard" x="-399" y="-76">cT &gt;= t</label><label kind="assignment" x="-340" y="-76">cT = 0</label><nail x="-340" y="-76"/></transition><transition><source ref="id4"/><target ref="id5"/><label kind="guard" x="-425" y="-17">cT &gt;= t &amp;&amp; salle5Accessible</label><label kind="assignment" x="-289" y="-17">cT = 0</label></transition><transition><source ref="id8"/><target ref="id5"/><label kind="guard" x="-493" y="-136">cT &gt;= t &amp;&amp; salle5Accessible</label><label kind="assignment" x="-391" y="-153">cT = 0</label><nail x="-416" y="-144"/></transition><transition><source ref="id5"/><target ref="id8"/><label kind="guard" x="-501" y="-195">cT &gt;= t</label><label kind="assignment" x="-493" y="-178">cT = 0</label></transition><transition><source ref="id5"/><target ref="id6"/><label kind="guard" x="-654" y="-42">cT &gt;= t &amp;&amp; salle4Accessible</label><label kind="assignment" x="-586" y="-42">cT = 0</label></transition><transition><source ref="id6"/><target ref="id5"/><label kind="guard" x="-671" y="-76">cT &gt;= t &amp;&amp; salle5Accessible</label><label kind="assignment" x="-569" y="-85">cT = 0</label><nail x="-586" y="-76"/></transition><transition><source ref="id3"/><target ref="id6"/><label kind="guard" x="-765" y="59">cT &gt;= t &amp;&amp; salle4Accessible</label><label kind="assignment" x="-748" y="76">cT = 0</label></transition><transition><source ref="id6"/><target ref="id3"/><label kind="guard" x="-680" y="51">cT &gt;= t</label><label kind="assignment" x="-654" y="76">cT = 0</label><nail x="-646" y="76"/></transition><transition><source ref="id9"/><target ref="id6"/><label kind="guard" x="-705" y="-195">cT &gt;= t &amp;&amp; salle4Accessible</label><label kind="assignment" x="-680" y="-178">cT = 0</label><nail x="-654" y="-136"/></transition><transition><source ref="id6"/><target ref="id9"/><label kind="guard" x="-756" y="-144">cT &gt;= t</label><label kind="assignment" x="-714" y="-119">cT= 0</label></transition><transition><source ref="id7"/><target ref="id4"/><label kind="guard" x="-178" y="-170">cT &gt;= t</label><label kind="assignment" x="-119" y="-170">cT = 0</label><nail x="-153" y="-153"/></transition><transition><source ref="id4"/><target ref="id7"/><label kind="guard" x="-280" y="-161">cT &gt;= t &amp;&amp; salle3Accessible</label><label kind="assignment" x="-246" y="-144">cT = 0</label></transition><transition><source ref="id7"/><target ref="id8"/><label kind="guard" x="-391" y="-280">cT &gt;= t</label><label kind="assignment" x="-323" y="-280">cT = 0</label></transition><transition><source ref="id8"/><target ref="id7"/><label kind="guard" x="-408" y="-221">cT &lt;= t &amp;&amp; salle3Accessible</label><label kind="assignment" x="-331" y="-238">cT = 0</label><nail x="-340" y="-221"/></transition><transition><source ref="id8"/><target ref="id9"/><label kind="guard" x="-646" y="-289">cT &gt;= t</label><label kind="assignment" x="-569" y="-289">cT = 0</label></transition><transition><source ref="id9"/><target ref="id8"/><label kind="guard" x="-612" y="-229">cT &gt;= t</label><label kind="assignment" x="-544" y="-229">cT = 0</label><nail x="-569" y="-221"/></transition></template><template><name>Guard</name><parameter>int pos</parameter><location id="id10" x="-527" y="-59"><name x="-552" y="-42">positionSalle4</name></location><location id="id11" x="-535" y="-153"><name x="-545" y="-187">positionSalle5</name></location><location id="id12" x="-535" y="-280"><name x="-578" y="-255">positionSalle3</name></location><location id="id13" x="-722" y="-119"><urgent/></location><init ref="id13"/><transition><source ref="id13"/><target ref="id10"/><label kind="guard" x="-671" y="-85">pos == 4</label><label kind="assignment" x="-739" y="-68">salle4Accessible = false</label></transition><transition><source ref="id13"/><target ref="id11"/><label kind="guard" x="-646" y="-144">pos == 5</label><label kind="assignment" x="-680" y="-127">salle5Accessible = false</label></transition><transition><source ref="id13"/><target ref="id12"/><label kind="guard" x="-654" y="-238">pos == 3</label><label kind="assignment" x="-739" y="-212">salle3Accessible = false</label></transition></template><template><name>Guard1</name><declaration>clock gcT; // current time
+const int gt = 20; // temps de surveillance d'une salle</declaration><location id="id14" x="-472" y="-128"><name x="-520" y="-160">positionSalle3</name></location><location id="id15" x="-472" y="32"><name x="-544" y="40">positionSalle2</name></location><location id="id16" x="-240" y="32"><name x="-256" y="40">positionSalle5</name></location><location id="id17" x="-240" y="-128"><name x="-256" y="-160">positionSalle6</name></location><location id="id18" x="-696" y="-128"></location><init ref="id18"/><transition><source ref="id15"/><target ref="id14"/><label kind="guard" x="-536" y="-80">gcT &gt;= gt</label><label kind="assignment" x="-624" y="-48">salle2Accessible = true,
+salle3Accessible = false,
+gcT = 0</label></transition><transition><source ref="id14"/><target ref="id17"/><label kind="guard" x="-384" y="-152">gcT &gt;= gt</label><label kind="assignment" x="-416" y="-128">salle3Accessible = true,
+salle6Accessible = false,
+gcT = 0</label></transition><transition><source ref="id18"/><target ref="id14"/><label kind="guard" x="-644" y="-158">gcT &gt;= gT</label><label kind="assignment" x="-644" y="-128">salle3Accessible = false,
+gcT = 0</label></transition><transition><source ref="id16"/><target ref="id15"/><label kind="guard" x="-384" y="32">gcT &gt;= gt</label><label kind="assignment" x="-424" y="48">salle5Accessible = true,
+salle2Accessible = false,
+gcT = 0</label></transition><transition><source ref="id17"/><target ref="id16"/><label kind="guard" x="-232" y="-80">gcT &gt;= gt</label><label kind="assignment" x="-232" y="-48">salle6Accessible = true,
+salle5Accessible = false,
+gcT = 0</label></transition></template><template><name>Guard2</name><declaration>clock gcT; // current time
+const int gt = 20; // temps de surveillance d'une salle</declaration><location id="id19" x="-64" y="-104"><name x="-74" y="-134">positionSalle8</name></location><location id="id20" x="-352" y="-104"><name x="-400" y="-144">positionSalle7</name></location><location id="id21" x="-600" y="-104"></location><init ref="id21"/><transition><source ref="id20"/><target ref="id19"/><label kind="guard" x="-320" y="-208">gcT &gt;= gt</label><label kind="assignment" x="-168" y="-232">salle7Accessible = true,
+salle8Accessible = false,
+gcT = 0</label><nail x="-216" y="-200"/></transition><transition><source ref="id19"/><target ref="id20"/><label kind="guard" x="-144" y="-40">gcT &gt;= gt</label><label kind="assignment" x="-408" y="-40">salle8Accessible = true,
+salle7Accessible = false,
+gcT = 0</label><nail x="-208" y="8"/></transition><transition><source ref="id21"/><target ref="id20"/><label kind="guard" x="-536" y="-134">gcT &gt;= gT</label><label kind="assignment" x="-536" y="-104">salle7Accessible = false,
+gcT = 0</label></transition></template><system>//Guard1 = Guard(3);
+//Guard2 = Guard(5);
+//Guard3 = Guard(4);
+//system Labyrinth, Guard1, Guard2, Guard3;
+system Labyrinth, Guard1, Guard2;</system></nta>
