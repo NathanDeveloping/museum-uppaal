@@ -22,11 +22,14 @@ bool salle7Accessible;
 bool salle8Accessible;
 bool salle9Accessible;
 
-// position actuelle des personnages
+// Position actuelle des personnages
 int posV; // position voleur
 int posG1; // position garde 1
 int posG2; // position garde 2
-int posG3; // position garde 3</declaration>
+int posG3; // position garde 3
+
+// Indique si le voleur s'est fait attrapé
+bool lost;</declaration>
 	<template>
 		<name x="5" y="5">Labyrinth</name>
 		<declaration>// Place local declarations here.</declaration>
@@ -225,36 +228,51 @@ int posG3; // position garde 3</declaration>
 		</transition>
 	</template>
 	<template>
+		<name>Observateur</name>
+		<location id="id10" x="0" y="-25">
+			<name x="-10" y="-59">Perdu</name>
+		</location>
+		<location id="id11" x="-357" y="-25">
+		</location>
+		<init ref="id11"/>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-339" y="-42">attrape?</label>
+			<label kind="assignment" x="-339" y="-25">lost = true</label>
+		</transition>
+	</template>
+	<template>
 		<name>Guard</name>
 		<parameter>int pos</parameter>
-		<location id="id10" x="-527" y="-59">
+		<location id="id12" x="-527" y="-59">
 			<name x="-552" y="-42">positionSalle4</name>
 		</location>
-		<location id="id11" x="-535" y="-153">
+		<location id="id13" x="-535" y="-153">
 			<name x="-545" y="-187">positionSalle5</name>
 		</location>
-		<location id="id12" x="-535" y="-280">
+		<location id="id14" x="-535" y="-280">
 			<name x="-578" y="-255">positionSalle3</name>
 		</location>
-		<location id="id13" x="-722" y="-119">
+		<location id="id15" x="-722" y="-119">
 			<urgent/>
 		</location>
-		<init ref="id13"/>
+		<init ref="id15"/>
 		<transition>
-			<source ref="id13"/>
-			<target ref="id10"/>
+			<source ref="id15"/>
+			<target ref="id12"/>
 			<label kind="guard" x="-671" y="-85">pos == 4</label>
 			<label kind="assignment" x="-739" y="-68">salle4Accessible = false</label>
 		</transition>
 		<transition>
-			<source ref="id13"/>
-			<target ref="id11"/>
+			<source ref="id15"/>
+			<target ref="id13"/>
 			<label kind="guard" x="-646" y="-144">pos == 5</label>
 			<label kind="assignment" x="-680" y="-127">salle5Accessible = false</label>
 		</transition>
 		<transition>
-			<source ref="id13"/>
-			<target ref="id12"/>
+			<source ref="id15"/>
+			<target ref="id14"/>
 			<label kind="guard" x="-654" y="-238">pos == 3</label>
 			<label kind="assignment" x="-739" y="-212">salle3Accessible = false</label>
 		</transition>
@@ -263,84 +281,84 @@ int posG3; // position garde 3</declaration>
 		<name>Guard1</name>
 		<declaration>clock gcT; // current time
 const int gt = 20; // temps de surveillance d'une salle</declaration>
-		<location id="id14" x="-467" y="-127">
+		<location id="id16" x="-467" y="-127">
 			<name x="-515" y="-159">positionSalle3</name>
 		</location>
-		<location id="id15" x="-472" y="32">
+		<location id="id17" x="-472" y="32">
 			<name x="-544" y="40">positionSalle2</name>
 		</location>
-		<location id="id16" x="-240" y="32">
+		<location id="id18" x="-240" y="32">
 			<name x="-256" y="40">positionSalle5</name>
 		</location>
-		<location id="id17" x="-238" y="-127">
+		<location id="id19" x="-238" y="-127">
 			<name x="-254" y="-159">positionSalle6</name>
 		</location>
-		<location id="id18" x="-696" y="-128">
+		<location id="id20" x="-696" y="-128">
 		</location>
-		<init ref="id18"/>
+		<init ref="id20"/>
 		<transition>
-			<source ref="id15"/>
-			<target ref="id15"/>
+			<source ref="id17"/>
+			<target ref="id17"/>
 			<label kind="guard" x="-527" y="110">posV == 2</label>
 			<label kind="synchronisation" x="-527" y="127">attrape!</label>
 			<nail x="-510" y="93"/>
 			<nail x="-450" y="93"/>
 		</transition>
 		<transition>
-			<source ref="id16"/>
-			<target ref="id16"/>
+			<source ref="id18"/>
+			<target ref="id18"/>
 			<label kind="guard" x="-263" y="110">posV == 5</label>
 			<label kind="synchronisation" x="-255" y="127">attrape!</label>
 			<nail x="-204" y="102"/>
 			<nail x="-272" y="102"/>
 		</transition>
 		<transition>
-			<source ref="id17"/>
-			<target ref="id17"/>
+			<source ref="id19"/>
+			<target ref="id19"/>
 			<label kind="guard" x="-253" y="-237">posV == 6</label>
 			<label kind="synchronisation" x="-253" y="-220">attrape!</label>
 			<nail x="-261" y="-203"/>
 			<nail x="-193" y="-203"/>
 		</transition>
 		<transition>
-			<source ref="id14"/>
-			<target ref="id14"/>
+			<source ref="id16"/>
+			<target ref="id16"/>
 			<label kind="guard" x="-501" y="-246">posV == 3</label>
 			<label kind="synchronisation" x="-493" y="-229">attrape!</label>
 			<nail x="-501" y="-204"/>
 			<nail x="-433" y="-204"/>
 		</transition>
 		<transition>
-			<source ref="id15"/>
-			<target ref="id14"/>
+			<source ref="id17"/>
+			<target ref="id16"/>
 			<label kind="guard" x="-536" y="-80">gcT &gt;= gt</label>
 			<label kind="assignment" x="-578" y="-51">posG1 = 3,
 gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id14"/>
-			<target ref="id17"/>
+			<source ref="id16"/>
+			<target ref="id19"/>
 			<label kind="guard" x="-384" y="-152">gcT &gt;= gt</label>
 			<label kind="assignment" x="-416" y="-128">posG1 = 6,
 gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id18"/>
-			<target ref="id14"/>
+			<source ref="id20"/>
+			<target ref="id16"/>
 			<label kind="guard" x="-646" y="-157">gcT &gt;= gT</label>
 			<label kind="assignment" x="-646" y="-127">posG1 = 3,
 gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id16"/>
-			<target ref="id15"/>
+			<source ref="id18"/>
+			<target ref="id17"/>
 			<label kind="guard" x="-384" y="32">gcT &gt;= gt</label>
 			<label kind="assignment" x="-424" y="48">posG1 = 2,
 gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id17"/>
-			<target ref="id16"/>
+			<source ref="id19"/>
+			<target ref="id18"/>
 			<label kind="guard" x="-232" y="-80">gcT &gt;= gt</label>
 			<label kind="assignment" x="-232" y="-48">posG1 = 5,
 gcT = 0</label>
@@ -350,18 +368,18 @@ gcT = 0</label>
 		<name>Guard2</name>
 		<declaration>clock gcT; // current time
 const int gt = 20; // temps de surveillance d'une salle</declaration>
-		<location id="id19" x="-64" y="-104">
+		<location id="id21" x="-64" y="-104">
 			<name x="-74" y="-134">positionSalle8</name>
 		</location>
-		<location id="id20" x="-352" y="-104">
+		<location id="id22" x="-352" y="-104">
 			<name x="-400" y="-144">positionSalle7</name>
 		</location>
-		<location id="id21" x="-600" y="-104">
+		<location id="id23" x="-600" y="-104">
 		</location>
-		<init ref="id21"/>
+		<init ref="id23"/>
 		<transition>
-			<source ref="id20"/>
-			<target ref="id19"/>
+			<source ref="id22"/>
+			<target ref="id21"/>
 			<label kind="guard" x="-320" y="-208">gcT &gt;= gt</label>
 			<label kind="assignment" x="-168" y="-232">salle7Accessible = true,
 salle8Accessible = false,
@@ -369,8 +387,8 @@ gcT = 0</label>
 			<nail x="-216" y="-200"/>
 		</transition>
 		<transition>
-			<source ref="id19"/>
-			<target ref="id20"/>
+			<source ref="id21"/>
+			<target ref="id22"/>
 			<label kind="guard" x="-144" y="-40">gcT &gt;= gt</label>
 			<label kind="assignment" x="-408" y="-40">salle8Accessible = true,
 salle7Accessible = false,
@@ -378,8 +396,8 @@ gcT = 0</label>
 			<nail x="-208" y="8"/>
 		</transition>
 		<transition>
-			<source ref="id21"/>
-			<target ref="id20"/>
+			<source ref="id23"/>
+			<target ref="id22"/>
 			<label kind="guard" x="-536" y="-134">gcT &gt;= gT</label>
 			<label kind="assignment" x="-536" y="-104">salle7Accessible = false,
 gcT = 0</label>
