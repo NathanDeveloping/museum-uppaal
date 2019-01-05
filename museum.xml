@@ -30,9 +30,10 @@ broadcast chan g2s1, g2s2, g2s3, g2s4, g2s5, g2s6, g2s7, g2s8, g2s9;</declaratio
 	<template>
 		<name x="5" y="5">Voleur</name>
 		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="-255" y="-493">
+		<location id="id0" x="-705" y="-433">
+			<name x="-722" y="-476">Attrape</name>
 		</location>
-		<location id="id1" x="-442" y="-433">
+		<location id="id1" x="-459" y="-433">
 			<urgent/>
 		</location>
 		<location id="id2" x="93" y="212">
@@ -69,7 +70,7 @@ broadcast chan g2s1, g2s2, g2s3, g2s4, g2s5, g2s6, g2s7, g2s8, g2s9;</declaratio
 		<transition>
 			<source ref="id1"/>
 			<target ref="id0"/>
-			<label kind="synchronisation" x="-424" y="-480">attrape!</label>
+			<label kind="synchronisation" x="-612" y="-459">attrape!</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -571,9 +572,9 @@ broadcast chan g2s1, g2s2, g2s3, g2s4, g2s5, g2s6, g2s7, g2s8, g2s9;</declaratio
 			<label kind="assignment" x="-544" y="-51">gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id18"/>
-			<target ref="id21"/>
-			<label kind="guard" x="-382" y="-153">gcT &gt;= tS &amp;&amp; !(posV == 3)</label>
+			<source ref="id19"/>
+			<target ref="id22"/>
+			<label kind="guard" x="-382" y="-153">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-449" y="-144">gs6!</label>
 			<label kind="assignment" x="-391" y="-127">gcT = 0</label>
 		</transition>
@@ -790,7 +791,7 @@ const int tS = 20; // temps de surveillance d'une salle</declaration>
 system Voleur, Guard1, Guard2, Observateur;</system>
 	<queries>
 		<query>
-			<formula>E&lt;&gt; (Labyrinth.Sortie &amp;&amp; gT &lt;= tempsLimite)
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; gT &lt;= tempsLimite)
 			</formula>
 			<comment>
 			</comment>
