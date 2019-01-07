@@ -6,9 +6,9 @@ clock cT; // current time
 clock gT; // global time
 clock gcT; // guard1 time
 const int tS = 20; // temps de surveillance d'une salle
-const int t = 30; // temps pour sortir d'une salle standard
+int t = 30; // temps pour sortir d'une salle standard
 const int tI = 15; // temps pour prendre un objet
-const int tempsLimite = 239; // temps impartis pour sortir du musée
+const int tempsLimite = 300; // temps impartis pour sortir du musée
 
 // Indique si le voleur s'est fait attrapé
 bool lost;
@@ -186,7 +186,7 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id12"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-807" y="-187">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-807" y="-187">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-790" y="-204">s4!</label>
 			<label kind="assignment" x="-799" y="-170">cT = 0, posV = 4</label>
 			<nail x="-765" y="-162"/>
@@ -194,13 +194,13 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id3"/>
-			<label kind="guard" x="-127" y="178">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-127" y="178">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="assignment" x="-59" y="186">cT = 0, posV = -1</label>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id4"/>
-			<label kind="guard" x="-442" y="144">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-442" y="144">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-466" y="152">s9!</label>
 			<label kind="assignment" x="-357" y="135">cT = 0, posV = 9</label>
 			<nail x="-357" y="135"/>
@@ -208,7 +208,7 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-748" y="144">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-748" y="144">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-714" y="127">s8!</label>
 			<label kind="assignment" x="-756" y="161">cT = 0, posV = 8</label>
 			<nail x="-714" y="169"/>
@@ -216,7 +216,7 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id4"/>
-			<label kind="guard" x="-191" y="-13">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-191" y="-13">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-178" y="101">s9!</label>
 			<label kind="assignment" x="-187" y="25">cT = 0, posV = 9</label>
 			<nail x="-161" y="76"/>
@@ -224,7 +224,7 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-459" y="42">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-459" y="42">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-459" y="76">s8!</label>
 			<label kind="assignment" x="-459" y="59">cT = 0, posV = 8</label>
 			<nail x="-442" y="59"/>
@@ -232,35 +232,35 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-289" y="50">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-289" y="50">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-238" y="84">s6!</label>
 			<label kind="assignment" x="-263" y="67">cT = 0, posV = 6</label>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-578" y="42">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-578" y="42">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-544" y="85">s5!</label>
 			<label kind="assignment" x="-578" y="59">cT = 0, posV = 5</label>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-416" y="178">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-416" y="178">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-408" y="195">s8!</label>
 			<label kind="assignment" x="-374" y="203">cT = 0, posV = 8</label>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-739" y="195">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-739" y="195">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-714" y="178">s7!</label>
 			<label kind="assignment" x="-739" y="212">cT = 0, posV = 7</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-433" y="-94">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-433" y="-94">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-382" y="-77">s6!</label>
 			<label kind="assignment" x="-357" y="-85">cT = 0, posV = 6</label>
 			<nail x="-357" y="-85"/>
@@ -268,14 +268,14 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-476" y="-26">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-476" y="-25">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-466" y="-51">s5!</label>
 			<label kind="assignment" x="-340" y="-26">cT = 0, posV = 5</label>
 		</transition>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-510" y="-145">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-510" y="-145">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-453" y="-229">s5!</label>
 			<label kind="assignment" x="-433" y="-162">cT = 0, posV = 5</label>
 			<nail x="-433" y="-153"/>
@@ -283,21 +283,21 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id11"/>
-			<label kind="guard" x="-518" y="-204">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-518" y="-204">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-493" y="-162">s2!</label>
 			<label kind="assignment" x="-510" y="-187">cT = 0, posV = 2</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-748" y="-34">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-748" y="-34">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-714" y="-51">s4!</label>
 			<label kind="assignment" x="-748" y="-17">cT = 0, posV = 4</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-756" y="-85">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-756" y="-85">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-731" y="-94">s5!</label>
 			<label kind="assignment" x="-756" y="-68">cT = 0, posV = 5</label>
 			<nail x="-705" y="-68"/>
@@ -305,14 +305,14 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-918" y="42">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-918" y="42">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-892" y="85">s4!</label>
 			<label kind="assignment" x="-918" y="59">cT = 0, posV = 4</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-841" y="93">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-841" y="93">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-807" y="76">s7!</label>
 			<label kind="assignment" x="-841" y="110">cT = 0, posV = 7</label>
 			<nail x="-790" y="76"/>
@@ -320,14 +320,14 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id12"/>
-			<label kind="guard" x="-926" y="-187">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-926" y="-187">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-901" y="-204">s1!</label>
 			<label kind="assignment" x="-926" y="-170">cT= 0, posV = 1</label>
 		</transition>
 		<transition>
 			<source ref="id10"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-195" y="-179">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-195" y="-178">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-178" y="-145">s6!</label>
 			<label kind="assignment" x="-136" y="-145">cT = 0, posV = 6</label>
 			<nail x="-170" y="-162"/>
@@ -335,21 +335,21 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id10"/>
-			<label kind="guard" x="-323" y="-179">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-323" y="-179">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-246" y="-204">s3!</label>
 			<label kind="assignment" x="-297" y="-153">cT = 0, posV = 3</label>
 		</transition>
 		<transition>
 			<source ref="id10"/>
 			<target ref="id11"/>
-			<label kind="guard" x="-408" y="-289">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-408" y="-289">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-365" y="-281">s2!</label>
 			<label kind="assignment" x="-340" y="-315">cT = 0, posV = 2</label>
 		</transition>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id10"/>
-			<label kind="guard" x="-425" y="-230">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-425" y="-230">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-365" y="-255">s3!</label>
 			<label kind="assignment" x="-348" y="-247">cT = 0, posV = 3</label>
 			<nail x="-357" y="-230"/>
@@ -357,14 +357,14 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id12"/>
-			<label kind="guard" x="-748" y="-315">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-748" y="-314">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-705" y="-332">s1!</label>
 			<label kind="assignment" x="-748" y="-298">cT = 0, posV = 1</label>
 		</transition>
 		<transition>
 			<source ref="id12"/>
 			<target ref="id11"/>
-			<label kind="guard" x="-765" y="-247">cT &gt;= (t*w) &amp;&amp; !lost</label>
+			<label kind="guard" x="-765" y="-246">cT &gt;= t &amp;&amp; !lost</label>
 			<label kind="synchronisation" x="-731" y="-264">s2!</label>
 			<label kind="assignment" x="-765" y="-230">cT = 0, posV = 2</label>
 			<nail x="-714" y="-238"/>
@@ -583,28 +583,9 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 			<nail x="-484" y="-127"/>
 		</transition>
 		<transition>
-			<source ref="id20"/>
-			<target ref="id15"/>
-			<label kind="guard" x="-595" y="102">posV == 2</label>
-			<nail x="-510" y="110"/>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id16"/>
-			<label kind="guard" x="-357" y="127">posV == 5</label>
-			<nail x="-289" y="110"/>
-		</transition>
-		<transition>
 			<source ref="id22"/>
 			<target ref="id17"/>
-			<label kind="guard" x="-340" y="-221">posV == 6</label>
 			<nail x="-297" y="-195"/>
-		</transition>
-		<transition>
-			<source ref="id19"/>
-			<target ref="id18"/>
-			<label kind="guard" x="-612" y="-221">posV == 3</label>
-			<nail x="-527" y="-204"/>
 		</transition>
 		<transition>
 			<source ref="id15"/>
@@ -701,16 +682,14 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 			<source ref="id24"/>
 			<target ref="id25"/>
 			<label kind="synchronisation" x="-127" y="34">lacheItem1?</label>
-			<label kind="assignment" x="-127" y="8">vT = vT - v1,
-w = w - 1</label>
+			<label kind="assignment" x="-75" y="4">t = t - 30</label>
 			<nail x="-93" y="25"/>
 		</transition>
 		<transition>
 			<source ref="id25"/>
 			<target ref="id24"/>
 			<label kind="synchronisation" x="-127" y="-85">prendItem1?</label>
-			<label kind="assignment" x="-136" y="-51">vT = vT + v1,
-w = w + 1</label>
+			<label kind="assignment" x="-119" y="-51">t = t + 30</label>
 			<nail x="-102" y="-68"/>
 		</transition>
 	</template>
@@ -906,13 +885,19 @@ const int tS = 20; // temps de surveillance d'une salle</declaration>
 system Voleur, Guard1, Guard2, Observateur, Item1;</system>
 	<queries>
 		<query>
+			<formula>E&lt;&gt; (Voleur.Salle3 &amp;&amp; Guard1.Salle3) &amp;&amp; !Observateur.Perdu
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
 			<formula>E&lt;&gt; (Voleur.Salle3 &amp;&amp; Guard2.Salle3) &amp;&amp; !Observateur.Perdu
 			</formula>
 			<comment>
 			</comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (Labyrinth.Sortie &amp;&amp; gT &lt;= tempsLimite)
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; gT &lt;= tempsLimite)
 			</formula>
 			<comment>
 			</comment>
@@ -936,7 +921,19 @@ system Voleur, Guard1, Guard2, Observateur, Item1;</system>
 			</comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; gT &lt;= tempsLimite &amp;&amp; vT &gt;= 1)
+			<formula>E&lt;&gt; (Item1.Pris &amp;&amp; !Observateur.Perdu)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; Item1.Pris)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; gT &lt;= tempsLimite &amp;&amp; Item1.Pris)
 			</formula>
 			<comment>
 			</comment>
