@@ -8,7 +8,7 @@ clock gcT; // guard1 time
 const int tS = 20; // temps de surveillance d'une salle
 int t = 30; // temps pour sortir d'une salle standard
 const int tI = 15; // temps pour prendre un objet
-const int tempsLimite = 300; // temps impartis pour sortir du musée
+const int tempsLimite = 1000; // temps impartis pour sortir du musée
 
 // Indique si le voleur s'est fait attrapé
 bool lost;
@@ -40,7 +40,7 @@ broadcast chan gs2, gs3, gs5, gs6;
 broadcast chan g2s1, g2s2, g2s3, g2s4, g2s5, g2s6, g2s7, g2s8, g2s9;
 
 // évenements déclenchés lors d'action sur les objets
-broadcast chan prendItem1, lacheItem1;</declaration>
+broadcast chan prendItem1, lacheItem1, prendItem2, lacheItem2;</declaration>
 	<template>
 		<name x="5" y="5">Voleur</name>
 		<declaration>// Place local declarations here.</declaration>
@@ -84,6 +84,13 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 			<name x="-876" y="-306">Salle1</name>
 		</location>
 		<init ref="id12"/>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-900" y="246">prendItem2!</label>
+			<nail x="-824" y="263"/>
+			<nail x="-918" y="263"/>
+		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
@@ -583,11 +590,6 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 			<nail x="-484" y="-127"/>
 		</transition>
 		<transition>
-			<source ref="id22"/>
-			<target ref="id17"/>
-			<nail x="-297" y="-195"/>
-		</transition>
-		<transition>
 			<source ref="id15"/>
 			<target ref="id20"/>
 			<label kind="synchronisation" x="-416" y="102">attrape!</label>
@@ -644,7 +646,7 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 		<transition>
 			<source ref="id19"/>
 			<target ref="id22"/>
-			<label kind="guard" x="-408" y="-153">gcT &gt;= tS &amp;&amp; !(posV == 3)</label>
+			<label kind="guard" x="-408" y="-153">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-449" y="-144">gs6!</label>
 			<label kind="assignment" x="-391" y="-127">gcT = 0</label>
 		</transition>
@@ -682,198 +684,199 @@ broadcast chan prendItem1, lacheItem1;</declaration>
 			<source ref="id24"/>
 			<target ref="id25"/>
 			<label kind="synchronisation" x="-127" y="34">lacheItem1?</label>
-			<label kind="assignment" x="-75" y="4">t = t - 30</label>
+			<label kind="assignment" x="-75" y="4">t = t - 15</label>
 			<nail x="-93" y="25"/>
 		</transition>
 		<transition>
 			<source ref="id25"/>
 			<target ref="id24"/>
 			<label kind="synchronisation" x="-127" y="-85">prendItem1?</label>
-			<label kind="assignment" x="-119" y="-51">t = t + 30</label>
+			<label kind="assignment" x="-119" y="-51">t = t + 15</label>
 			<nail x="-102" y="-68"/>
+		</transition>
+	</template>
+	<template>
+		<name>Item2</name>
+		<location id="id26" x="157" y="39">
+			<name x="147" y="5">Pris</name>
+		</location>
+		<location id="id27" x="-9" y="42">
+			<name x="-34" y="8">EnPlace</name>
+		</location>
+		<init ref="id27"/>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id27"/>
+			<label kind="synchronisation" x="38" y="90">lacheItem2?</label>
+			<label kind="assignment" x="93" y="59">t = t - 15</label>
+			<nail x="72" y="81"/>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="38" y="-29">prendItem2?</label>
+			<label kind="assignment" x="46" y="5">t = t + 15</label>
+			<nail x="63" y="-12"/>
 		</transition>
 	</template>
 	<template>
 		<name>Guard2</name>
 		<declaration>clock gcT; // current time
 const int tS = 20; // temps de surveillance d'une salle</declaration>
-		<location id="id26" x="-680" y="-646">
+		<location id="id28" x="-680" y="-646">
 		</location>
-		<location id="id27" x="-680" y="-544">
+		<location id="id29" x="-680" y="-544">
 			<urgent/>
 		</location>
-		<location id="id28" x="-374" y="136">
+		<location id="id30" x="-374" y="136">
 			<urgent/>
 		</location>
-		<location id="id29" x="-374" y="34">
+		<location id="id31" x="-374" y="34">
 			<name x="-384" y="0">Salle9</name>
 			<label kind="invariant" x="-384" y="51">gcT &lt;= tS</label>
 		</location>
-		<location id="id30" x="-680" y="34">
+		<location id="id32" x="-680" y="34">
 			<name x="-690" y="0">Salle8</name>
 			<label kind="invariant" x="-690" y="51">gcT &lt;= tS</label>
 		</location>
-		<location id="id31" x="-986" y="34">
+		<location id="id33" x="-986" y="34">
 			<name x="-996" y="0">Salle7</name>
 			<label kind="invariant" x="-996" y="51">gcT &lt;= tS</label>
 		</location>
-		<location id="id32" x="-374" y="-170">
+		<location id="id34" x="-374" y="-170">
 			<name x="-384" y="-204">Salle6</name>
 			<label kind="invariant" x="-384" y="-153">gcT &lt;= tS</label>
 		</location>
-		<location id="id33" x="-680" y="-170">
-			<name x="-690" y="-204">Salle5</name>
-			<label kind="invariant" x="-690" y="-153">gcT &lt;= tS</label>
-		</location>
-		<location id="id34" x="-986" y="-170">
+		<location id="id35" x="-986" y="-170">
 			<name x="-996" y="-204">Salle4</name>
 			<label kind="invariant" x="-996" y="-153">gcT &lt;= tS</label>
 		</location>
-		<location id="id35" x="-374" y="-374">
+		<location id="id36" x="-374" y="-374">
 			<name x="-384" y="-408">Salle3</name>
 			<label kind="invariant" x="-384" y="-357">gcT &lt;= tS</label>
 		</location>
-		<location id="id36" x="-680" y="-374">
+		<location id="id37" x="-680" y="-374">
 			<name x="-690" y="-408">Salle2</name>
 			<label kind="invariant" x="-690" y="-357">gcT &lt;= tS</label>
 		</location>
-		<location id="id37" x="-986" y="-374">
+		<location id="id38" x="-986" y="-374">
 			<name x="-996" y="-408">Salle1</name>
 			<label kind="invariant" x="-996" y="-357">gcT &lt;= tS</label>
 		</location>
-		<init ref="id28"/>
+		<init ref="id30"/>
 		<transition>
-			<source ref="id30"/>
-			<target ref="id27"/>
+			<source ref="id33"/>
+			<target ref="id32"/>
+			<label kind="guard" x="-892" y="0">gcT &gt;= tS</label>
+			<label kind="synchronisation" x="-884" y="17">g2s8!</label>
+			<label kind="assignment" x="-884" y="34">gcT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id33"/>
+			<label kind="guard" x="-986" y="-102">gcT &gt;= tS</label>
+			<label kind="synchronisation" x="-986" y="-85">g2s7!</label>
+			<label kind="assignment" x="-986" y="-68">gcT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-986" y="-306">gcT &gt;= tS</label>
+			<label kind="synchronisation" x="-986" y="-289">g2s4!</label>
+			<label kind="assignment" x="-986" y="-272">gcT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id38"/>
+			<label kind="guard" x="-909" y="-408">gcT &gt;= tS</label>
+			<label kind="synchronisation" x="-901" y="-391">g2s1!</label>
+			<label kind="assignment" x="-909" y="-374">gcT = 0</label>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-637" y="-25">s8?</label>
 			<nail x="-544" y="-170"/>
 		</transition>
 		<transition>
-			<source ref="id33"/>
-			<target ref="id27"/>
-			<label kind="synchronisation" x="-798" y="-187">s5?</label>
-			<nail x="-816" y="-170"/>
-		</transition>
-		<transition>
-			<source ref="id27"/>
-			<target ref="id26"/>
+			<source ref="id29"/>
+			<target ref="id28"/>
 			<label kind="synchronisation" x="-680" y="-612">attrape!</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id27"/>
+			<source ref="id31"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-356" y="17">s9?</label>
 			<nail x="-204" y="34"/>
 			<nail x="-204" y="-612"/>
 		</transition>
 		<transition>
-			<source ref="id31"/>
-			<target ref="id27"/>
+			<source ref="id33"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-1138" y="17">s7?</label>
 			<nail x="-1156" y="34"/>
 			<nail x="-1156" y="-612"/>
 		</transition>
 		<transition>
-			<source ref="id32"/>
-			<target ref="id27"/>
+			<source ref="id34"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-356" y="-187">s6?</label>
 			<nail x="-272" y="-170"/>
 			<nail x="-272" y="-544"/>
 		</transition>
 		<transition>
-			<source ref="id34"/>
-			<target ref="id27"/>
+			<source ref="id35"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-1070" y="-187">s4?</label>
 			<nail x="-1088" y="-170"/>
 			<nail x="-1088" y="-544"/>
 		</transition>
 		<transition>
-			<source ref="id35"/>
-			<target ref="id27"/>
+			<source ref="id36"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-518" y="-467">s3?</label>
 		</transition>
 		<transition>
-			<source ref="id36"/>
-			<target ref="id27"/>
+			<source ref="id37"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-680" y="-476">s2?</label>
 		</transition>
 		<transition>
-			<source ref="id37"/>
-			<target ref="id27"/>
+			<source ref="id38"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-884" y="-459">s1?</label>
 		</transition>
 		<transition>
-			<source ref="id30"/>
-			<target ref="id29"/>
+			<source ref="id32"/>
+			<target ref="id31"/>
+			<label kind="guard" x="-578" y="0">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-561" y="17">g2s9!</label>
 			<label kind="assignment" x="-569" y="34">gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id37"/>
-			<target ref="id36"/>
-			<label kind="guard" x="-884" y="-408">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-867" y="-391">g2s2!</label>
-			<label kind="assignment" x="-875" y="-374">gcT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id34"/>
-			<target ref="id37"/>
-			<label kind="guard" x="-986" y="-306">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-986" y="-289">g2s1!</label>
-			<label kind="assignment" x="-986" y="-272">gcT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id31"/>
-			<target ref="id34"/>
-			<label kind="guard" x="-986" y="-102">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-986" y="-85">g2s4!</label>
-			<label kind="assignment" x="-986" y="-68">gcT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id30"/>
-			<target ref="id31"/>
-			<label kind="guard" x="-884" y="0">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-867" y="17">g2s7!</label>
-			<label kind="assignment" x="-875" y="34">gcT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id33"/>
-			<target ref="id30"/>
-			<label kind="guard" x="-680" y="-102">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-680" y="-85">g2s8!</label>
-			<label kind="assignment" x="-680" y="-68">gcT = 0</label>
-		</transition>
-		<transition>
 			<source ref="id36"/>
-			<target ref="id33"/>
-			<label kind="guard" x="-680" y="-306">gcT &gt;= tS</label>
-			<label kind="synchronisation" x="-680" y="-289">g2s5!</label>
-			<label kind="assignment" x="-680" y="-272">gcT = 0</label>
-		</transition>
-		<transition>
-			<source ref="id35"/>
-			<target ref="id36"/>
+			<target ref="id37"/>
 			<label kind="guard" x="-578" y="-408">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-552" y="-391">g2s2!</label>
 			<label kind="assignment" x="-561" y="-374">gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id32"/>
-			<target ref="id35"/>
+			<source ref="id34"/>
+			<target ref="id36"/>
 			<label kind="guard" x="-374" y="-306">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-374" y="-289">g2s3!</label>
 			<label kind="assignment" x="-374" y="-272">gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id32"/>
+			<source ref="id31"/>
+			<target ref="id34"/>
 			<label kind="guard" x="-374" y="-102">gcT &gt;= tS</label>
 			<label kind="synchronisation" x="-374" y="-85">g2s6!</label>
 			<label kind="assignment" x="-374" y="-68">gcT = 0</label>
 		</transition>
 		<transition>
-			<source ref="id28"/>
-			<target ref="id29"/>
+			<source ref="id30"/>
+			<target ref="id31"/>
 			<label kind="synchronisation" x="-374" y="85">g2s9!</label>
 			<label kind="assignment" x="-374" y="102">gcT = 0</label>
 		</transition>
@@ -882,7 +885,7 @@ const int tS = 20; // temps de surveillance d'une salle</declaration>
 //Guard2 = Guard(5);
 //Guard3 = Guard(4);
 //system Labyrinth, Guard1, Guard2, Guard3;
-system Voleur, Guard1, Guard2, Observateur, Item1;</system>
+system Voleur, Guard1, Guard2, Observateur, Item1, Item2;</system>
 	<queries>
 		<query>
 			<formula>E&lt;&gt; (Voleur.Salle3 &amp;&amp; Guard1.Salle3) &amp;&amp; !Observateur.Perdu
@@ -927,13 +930,13 @@ system Voleur, Guard1, Guard2, Observateur, Item1;</system>
 			</comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; Item1.Pris)
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; Item2.Pris &amp;&amp; Item1.Pris)
 			</formula>
 			<comment>
 			</comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; gT &lt;= tempsLimite &amp;&amp; Item1.Pris)
+			<formula>E&lt;&gt; (Voleur.Sortie &amp;&amp; !Observateur.Perdu &amp;&amp; gT &lt;= tempsLimite &amp;&amp; Item1.Pris &amp;&amp; Item2.Pris)
 			</formula>
 			<comment>
 			</comment>
